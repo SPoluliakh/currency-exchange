@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FcCalculator } from 'react-icons/fc';
+import { FcCalculator, FcCurrencyExchange } from 'react-icons/fc';
 import { fetch } from '../Fetch/fetch';
 import { Exchange } from '../Exchange/Exchange';
 import { CurrencyRate } from '../CurrencyRate/CurrencyRates';
@@ -70,7 +70,10 @@ export const App = () => {
 
   return (
     <Wrap>
-      <MainText>Currency converter</MainText>
+      <MainText>
+        Currency converter
+        <FcCurrencyExchange size="32" />
+      </MainText>
       <CurrencyRate maineCurrency={maineCurrency} />
       <Exchange
         currencyOptions={currencyOptions}
