@@ -6,17 +6,17 @@ import { CurrencyRate } from '../CurrencyRate/CurrencyRates';
 import { MainText, Equal, Wrap } from './App.styled';
 
 export const App = () => {
-  const [currencyOptions, setCurrencyOptions] = useState([]);
-  const [maineCurrency, setMaineCurrency] = useState([]);
-  const [sellCurrency, setSellCurrency] = useState();
-  const [buyCurrency, setBuyCurrency] = useState();
-  const [exchangeRate, setExchangeRate] = useState(0);
-  const [amount, setAmount] = useState(1);
-  const [isAmount, setIsAmount] = useState(true);
+  const [currencyOptions, setCurrencyOptions] = useState([]); // Responsible for avaible currency options
+  const [maineCurrency, setMaineCurrency] = useState([]); // Responsible for main currency rate wich imagine in header info
+  const [sellCurrency, setSellCurrency] = useState(); // Responsible for currency for sell
+  const [buyCurrency, setBuyCurrency] = useState(); // Responsible for currency for buy
+  const [exchangeRate, setExchangeRate] = useState(0); // Responsible for exchange rate
+  const [amount, setAmount] = useState(1); // Responsible for amount manually selected
+  const [isAmount, setIsAmount] = useState(true); // Responsible for toggle sell or buy amount selected mannualy
 
   let amountToSell;
   let amountToBuy;
-
+  // Responsible for sell amount and buy amount
   if (isAmount) {
     amountToSell = amount;
     amountToBuy = Number((amount * exchangeRate).toFixed(2));
@@ -24,6 +24,7 @@ export const App = () => {
     amountToBuy = amount;
     amountToSell = Number((amount / exchangeRate).toFixed(2));
   }
+  // Responsible for getting exchange rates and filling the default values
   useEffect(() => {
     try {
       fetch().then(data => {
@@ -42,7 +43,7 @@ export const App = () => {
       console.log(err.message);
     }
   }, []);
-
+  // Responsible for getting manually selected currency rates
   useEffect(() => {
     if (sellCurrency !== undefined && buyCurrency !== undefined) {
       try {
@@ -56,12 +57,13 @@ export const App = () => {
       }
     }
   }, [sellCurrency, buyCurrency]);
-
+  // Responsible for amount to sell selected manually
   const toSellHandleChange = evt => {
     const sum = Number(evt.target.value);
     setAmount(sum);
     setIsAmount(true);
   };
+  // Responsible for amount to buy selected manually
   const toBuyHandleChange = evt => {
     const sum = Number(evt.target.value);
     setAmount(sum);
@@ -78,7 +80,7 @@ export const App = () => {
       <Exchange
         currencyOptions={currencyOptions}
         selectedCurrency={sellCurrency}
-        onChange={evt => setSellCurrency(evt.target.value)}
+        onChange={evt => setSellCurrency(evt.target.value)} // Responsible for currency to sell selected manually
         amount={amountToSell}
         onValueChange={toSellHandleChange}
         type={'Sell: '}
@@ -89,7 +91,7 @@ export const App = () => {
       <Exchange
         currencyOptions={currencyOptions}
         selectedCurrency={buyCurrency}
-        onChange={evt => setBuyCurrency(evt.target.value)}
+        onChange={evt => setBuyCurrency(evt.target.value)} // Responsible for currency to buy selected manually
         amount={amountToBuy}
         onValueChange={toBuyHandleChange}
         type={'Buy: '}
