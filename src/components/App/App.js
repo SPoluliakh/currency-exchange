@@ -36,7 +36,7 @@ export const App = () => {
           data.rates.GBP.toFixed(2),
         ]);
         setSellCurrency(data.base);
-        setBuyCurrency(options[options.length - 1]);
+        setBuyCurrency(options[147]);
         setExchangeRate(data.rates[options[options.length - 1]]);
       });
     } catch (err) {
