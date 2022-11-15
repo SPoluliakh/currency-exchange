@@ -24,6 +24,7 @@ export const Exchange = ({
             type="number"
             value={amount}
             onChange={onValueChange}
+            min={0}
           />
         </ExchangeLabel>
         <ExchangeSelect value={selectedCurrency} onChange={onChange}>
