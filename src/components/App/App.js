@@ -80,7 +80,7 @@ export const App = () => {
       <Exchange
         currencyOptions={currencyOptions}
         selectedCurrency={sellCurrency}
-        onChange={evt => setSellCurrency(evt.target.value)} // Responsible for currency to sell selected manually
+        onChange={setSellCurrency} // Responsible for currency to sell selected manually
         amount={amountToSell}
         onValueChange={toSellHandleChange}
         type={'Sell: '}
@@ -91,7 +91,7 @@ export const App = () => {
       <Exchange
         currencyOptions={currencyOptions}
         selectedCurrency={buyCurrency}
-        onChange={evt => setBuyCurrency(evt.target.value)} // Responsible for currency to buy selected manually
+        onChange={setBuyCurrency} // Responsible for currency to buy selected manually
         amount={amountToBuy}
         onValueChange={toBuyHandleChange}
         type={'Buy: '}

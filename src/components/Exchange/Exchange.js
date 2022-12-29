@@ -27,7 +27,10 @@ export const Exchange = ({
             min={0}
           />
         </ExchangeLabel>
-        <ExchangeSelect value={selectedCurrency} onChange={onChange}>
+        <ExchangeSelect
+          value={selectedCurrency}
+          onChange={evt => onChange(evt.target.value)}
+        >
           {currencyOptions.map(currency => (
             <option key={currency} value={currency}>
               {currency}
